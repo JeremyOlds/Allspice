@@ -5,15 +5,20 @@
   <main>
     <router-view />
   </main>
-   <footer class="bg-dark text-light">
-    Made with 💖 by CodeWorks
-  </footer>
+  <ModalComponentXL id="recipeDetails">
+    <template #body>
+      <ActiveRecipeComponent />
+    </template>
+
+  </ModalComponentXL>
 </template>
 
 <script>
 import { computed } from 'vue'
 import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
+import ModalComponentXL from "./components/ModalComponentXL.vue"
+import ActiveRecipeComponent from "./components/ActiveRecipeComponent.vue"
 
 export default {
   setup() {
@@ -21,13 +26,13 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar }
+  components: { Navbar, ModalComponentXL, ActiveRecipeComponent }
 }
 </script>
 <style lang="scss">
 @import "./assets/scss/main.scss";
 
-:root{
+:root {
   --main-height: calc(100vh - 32px - 64px);
 }
 

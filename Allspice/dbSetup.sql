@@ -40,7 +40,20 @@ CREATE TABLE favorites
   FOREIGN KEY (recipeId) REFERENCES recipes(id) ON DELETE CASCADE
 ) default charset utf8 COMMENT '';
 
-DROP TABLE recipes
+
+      INSERT INTO favorites (accountId, recipeId)
+      VALUES ("64adb61337a3dfb233a73217", 23);
+      SELECT LAST_INSERT_ID()
+
+      SELECT * FROM favorites WHERE id = 1;
+
+      DROP TABLE favorites;
+      DROP TABLE ingredients;
+
+
+      DROP TABLE recipes;
+
+DROP TABLE recipes;
 
         UPDATE recipes
         SET
