@@ -2,11 +2,11 @@
   <div class="container-fluid">
     <div class="row banner">
       <!-- SECTION Banner -->
-      <div class="text-white col-12 d-flex flex-column align-items-center justify-content-center m-auto mt-5 elevation-5">
-        <div>
-          <h2>All-Spice</h2>
-          <h3>Cherish Your Family</h3>
-          <h3>And Their Cooking</h3>
+      <div class="text-white col-12 d-flex flex-column align-items-center justify-content-center m-auto mt-5">
+        <div class=" text-center">
+          <h2 class="bg-dark rounded-top  p-1 mb-0">All-Spice</h2>
+          <h3 class="bg-dark p-1 mb-0">Cherish Your Family</h3>
+          <h3 class="bg-dark rounded-bottom p-1 ">And Their Cooking</h3>
         </div>
       </div>
       <!-- SECTION search bar -->
@@ -39,12 +39,13 @@
 </template>
 
 <script>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, ref, watchEffect } from "vue";
 import Pop from "../utils/Pop.js";
 import { logger } from "../utils/Logger.js";
 import { recipesService } from "../services/RecipesService.js"
 import { AppState } from "../AppState.js";
 import RecipeComponent from "../components/RecipeComponent.vue";
+import { favoritesService } from "../services/FavoritesService.js";
 
 export default {
   setup() {
@@ -59,9 +60,23 @@ export default {
         logger.log(error);
       }
     }
+    async function getFavorites() {
+      try {
+        await favoritesService.getFavorites()
+      } catch (error) {
+        Pop.error(error.message)
+        logger.log(error)
+      }
+    }
     onMounted(() => {
       getRecipes();
+      // getFavorites();
     });
+    watchEffect(() => {
+      if (AppState.account.id) {
+        getFavorites();
+      }
+    })
 
     return {
       filterBy,

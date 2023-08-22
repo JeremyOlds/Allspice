@@ -12,6 +12,7 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav me-auto">
         <li>
+          <button data-bs-toggle="modal" data-bs-target="#recipeForm" class="btn btn-success">Create a Recipe!</button>
         </li>
       </ul>
       <!-- LOGIN COMPONENT HERE -->
@@ -24,7 +25,13 @@
 import Login from './Login.vue';
 export default {
   setup() {
-    return {}
+
+
+    return {
+
+
+
+    }
   },
   components: { Login }
 }

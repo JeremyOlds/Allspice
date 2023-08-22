@@ -11,6 +11,12 @@
     </template>
 
   </ModalComponentXL>
+
+  <ModalComponent id="recipeForm">
+    <template #body>
+      <RecipeFormComponent />
+    </template>
+  </ModalComponent>
 </template>
 
 <script>
@@ -19,6 +25,8 @@ import { AppState } from './AppState'
 import Navbar from './components/Navbar.vue'
 import ModalComponentXL from "./components/ModalComponentXL.vue"
 import ActiveRecipeComponent from "./components/ActiveRecipeComponent.vue"
+import ModalComponent from "./components/ModalComponent.vue"
+import RecipeFormComponent from "./components/RecipeFormComponent.vue"
 
 export default {
   setup() {
@@ -26,7 +34,7 @@ export default {
       appState: computed(() => AppState)
     }
   },
-  components: { Navbar, ModalComponentXL, ActiveRecipeComponent }
+  components: { Navbar, ModalComponentXL, ActiveRecipeComponent, ModalComponent, RecipeFormComponent }
 }
 </script>
 <style lang="scss">

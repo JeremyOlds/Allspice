@@ -17,6 +17,20 @@ class RecipesService {
     AppState.activeRecipe = recipe
     logger.log("setting active recipe", AppState.activeRecipe)
   }
+  async createRecipe(formData) {
+    const res = await api.post('api/recipes', formData)
+    logger.log('create recipe res data', res.data)
+    const recipe = new Recipe(res.data)
+    logger.log('create turned to class', recipe)
+    AppState.recipes.push(recipe)
+    logger.log('appstate create', AppState.recipes)
+  }
+  async removeRecipe(recipeId) {
+    const res = await api.delete(`api/recipes/${recipeId}`)
+    const recipeIndex = AppState.recipes.findIndex(r => r.id == recipeId)
+    AppState.recipes.splice(recipeIndex, 1)
+  }
+
 }
 
 
